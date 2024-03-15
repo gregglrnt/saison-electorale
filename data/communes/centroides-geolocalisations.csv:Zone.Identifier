@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://geo.data.gouv.fr/
+HostUrl=https://transcode.geo.data.gouv.fr/links/5f9b67dffa4268bc254c8007/downloads/5f9b67e36a9fcb688bf44c92?format=CSV&projection=WGS84
