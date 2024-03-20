@@ -8,6 +8,14 @@ generator client {
   recursive_type_depth = 5
 }
 
+model Station {
+  id          String  @id
+  coordinates String
+  zip         String
+  commune     String
+  Meteo       Meteo[]
+}
+
 model Meteo {
   stationId           String
   date                DateTime
@@ -18,9 +26,45 @@ model Meteo {
   cloudiness          Float? //nébulosité
   ice_height          Float?
   rain                Float?
-  coordinates         String
-  commune             String
-  zip                 String
+  station             Station  @relation(fields: [stationId], references: [id])
 
   @@id([stationId, date])
+}
+
+model Commune {
+  zip         String?
+  code        String    @id @unique
+  insee_code  String?   @unique
+  departement String?
+  label       String
+  centroid    String?
+  Results     Results[]
+}
+
+enum ElectionType {
+  LEG
+  PRES
+  EURO
+  DEP
+  MUNI
+}
+
+model Election {
+  id      Int          @unique @default(autoincrement())
+  date    DateTime
+  type    ElectionType
+  round   Int          @default(1)
+  Results Results[]
+}
+
+model Results {
+  communeId    String
+  commune      Commune  @relation(fields: [communeId], references: [code])
+  ballot       Election @relation(fields: [ballotId], references: [id])
+  ballotId     Int
+  abstention   Float
+  voters       Float
+  invalidVotes Float
+
+  @@id([ballotId, communeId])
 }
