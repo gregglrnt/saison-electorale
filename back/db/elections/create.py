@@ -1,12 +1,13 @@
 from datetime import datetime
 from prisma.models import Election, Results
 
-async def create_or_get_election(filename: str):
-        [date_str, election] = filename.removesuffix(".csv").split("_")
-        date = datetime.strptime(date_str, "%Y-%m-%d")
-        [election_type, election_round] = election.split("-")
-        election = await create_election(date, int(election_round), election_type.upper())
-        return election.id
+async def create_from_csv(filename: str):
+    print(filename)
+    [date_str, election] = filename.removesuffix(".csv").split("_")
+    date = datetime.strptime(date_str, "%Y-%m-%d")
+    [election_type, election_round] = election.split("-")
+    election = await create_election(date, int(election_round), election_type.upper())
+    return election.id
 
 async def create_election(date: datetime, election_round: int, election_type: str) -> Election:
     election = await Election.prisma().find_first(where={
@@ -40,4 +41,4 @@ async def create_result(code: str, abs: float, voters: float, invalid: float, el
             }
         })
     except Exception as e:
-        print("erreur", e, election)
+        print(f"not connect", code, election)

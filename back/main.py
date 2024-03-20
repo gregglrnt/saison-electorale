@@ -1,7 +1,14 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
+from db.main import prisma
+from routes.commune import router
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):  
+    await prisma.connect()
+    yield
+    await prisma.disconnect()
+    
+app = FastAPI(lifespan=lifespan)
 
-@app.get("/")
-async def hello():
-    return {"Hello": "World"}
+app.include_router(router)

@@ -9,11 +9,12 @@ generator client {
 }
 
 model Station {
-  id          String  @id
-  coordinates String
-  zip         String
+  id          String    @id
+  coordinates String    @unique
+  zip         String    
   commune     String
   Meteo       Meteo[]
+  Commune     Commune[]
 }
 
 model Meteo {
@@ -32,13 +33,15 @@ model Meteo {
 }
 
 model Commune {
-  zip         String?
-  code        String    @id @unique
-  insee_code  String?   @unique
-  departement String?
-  label       String
-  centroid    String?
-  Results     Results[]
+  zip            String?
+  code           String    @id @unique
+  insee_code     String?   @unique
+  departement    String?
+  label          String
+  centroid       String?
+  Results        Results[]
+  closer_station Station?  @relation(fields: [stationId], references: [id])
+  stationId      String?
 }
 
 enum ElectionType {
