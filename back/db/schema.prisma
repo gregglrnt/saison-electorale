@@ -1,0 +1,26 @@
+datasource db {
+  provider = "postgres"
+  url      = "postgresql://postgres:brWKd35UU39WV5@localhost:5432"
+}
+
+generator client {
+  provider             = "prisma-client-py"
+  recursive_type_depth = 5
+}
+
+model Meteo {
+  stationId           String
+  date                DateTime
+  wind_speed          Float?
+  temperature_kelvin  Float?
+  temperature_celsius Float?
+  humidity            Float?
+  cloudiness          Float? //nébulosité
+  ice_height          Float?
+  rain                Float?
+  coordinates         String
+  commune             String
+  zip                 String
+
+  @@id([stationId, date])
+}
