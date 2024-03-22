@@ -1,5 +1,5 @@
 # Backend
-Le backend de Saison-electorale
+Le backend de Saisonelectorale
 
 ## Initialisation 🚀
 Pour lancer l'environnement virtuel:

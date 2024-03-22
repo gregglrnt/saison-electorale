@@ -17,7 +17,7 @@ def get_closer_station(coord: tuple, other: List[Station]):
                 station_distance = dist
         return closer_station
     except: 
-        print("Could not find a closer station")
+        print(f"Could not find a closer station for {coord}")
 
 async def get_nearby_stations(coord):
     lon = int(coord[0])

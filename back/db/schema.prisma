@@ -50,6 +50,7 @@ enum ElectionType {
   EURO
   DEP
   MUNI
+  REG
 }
 
 model Election {
