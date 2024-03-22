@@ -5,6 +5,7 @@ import { da, faker } from '@faker-js/faker'
 import TopBar from './components/TopBar'
 import SearchBar from './components/SearchBar'
 import MapChart from './components/FranceMap'
+import DiscreteSlider from './components/DiscreteSlider.js'
 import './graph-script.js'
 import React from 'react'
 /*ChartJS.register(
@@ -52,6 +53,7 @@ const App = () => {
         <TopBar />
         <SearchBar />
         <MapChart />
+        <DiscreteSlider />
     </div>
   )
 }
