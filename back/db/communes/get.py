@@ -24,3 +24,12 @@ async def get_results_election(communeId: str, ballot: Election):
             "communeId": communeId,
         }
     })
+    
+async def get_commune_by_text(text: str):
+    res = await prisma.commune.find_many(where={
+        "label": {
+            "startswith": text,
+            "mode": "insensitive"
+        }
+    }, take=20)
+    return list(map(lambda r : r.label, res))
