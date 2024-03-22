@@ -1,7 +1,8 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from db.main import prisma
-from routes.commune import router
+from routes.commune import communes
+from routes.compare import compare
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):  
@@ -11,4 +12,5 @@ async def lifespan(app: FastAPI):
     
 app = FastAPI(lifespan=lifespan)
 
-app.include_router(router)
+app.include_router(communes)
+app.include_router(compare)

@@ -46,13 +46,13 @@ async def add_meteo_record(row: list[str]):
             }
         })
     except: 
-        print("fail", row[1], station.id)
+        return
     
 
 async def seed_meteo():
+    print("seeding meteo....")
     for csv_file in csv_files:
         path = os.path.join("../../data/meteo", csv_file)
-        print(csv_file)
         with open(path, "r") as file:
             csvreader = csv.reader(file, delimiter=";")
             next(csvreader)
