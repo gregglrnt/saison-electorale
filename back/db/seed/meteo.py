@@ -56,7 +56,6 @@ async def seed_meteo():
         with open(path, "r") as file:
             csvreader = csv.reader(file, delimiter=";")
             next(csvreader)
-            for _ in range(10):
-                row = next(csvreader)
+            for row in csvreader:
                 values = [row[pos] for pos in columns]
                 await add_meteo_record(values)
