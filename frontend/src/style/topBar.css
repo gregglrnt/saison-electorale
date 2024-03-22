@@ -1,0 +1,40 @@
+.top-bar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center; 
+    height: 30vh; 
+    color: #fff;
+  }
+  
+  .logo {
+    position: absolute;
+    width: 15%;
+    height: auto;
+    filter: drop-shadow(-3px 3px 4px rgba(83, 172, 255, 0.25));
+  }
+  
+  .title {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 30px;
+    color: #329DFF;
+    text-align: justify;
+  }
+
+  .title-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20rem;
+  }
+
+  .subTitle {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 16px;
+    color: #FF473E;
+  }
+
+  
