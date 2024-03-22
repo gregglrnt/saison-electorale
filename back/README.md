@@ -13,12 +13,7 @@ Pour lancer l'environnement virtuel:
 ```bash
 source .venv/bin/activate
 ```
-Pour monter la database:
-````bash
-cd db
-docker compose up
-````
-Ensuite, pour initialiser la data:
+Pour initialiser la data:
 ```bash
 python3 seed.py
 ```
