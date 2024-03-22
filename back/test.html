@@ -1,0 +1,21 @@
+<body>
+<label for="text"> Entrez votre recherche </label>
+<input type="text" id="test">
+
+<div id="results"></div>
+
+<script>
+const results = document.getElementById("results")
+const text = document.getElementById("test")
+text.addEventListener("input", async () => {
+    if(text.value.length < 3 ) {
+        results.innerHTML = ""
+        return;
+    };
+    const res = await fetch("http://localhost:8000/commune/search?query=" + text.value).then(response => response.json()).then((data) => data)
+    let div = ""
+    res.forEach((r) => div += `<option>${r}</option>`)
+    results.innerHTML = div
+})
+</script>
+</body>
