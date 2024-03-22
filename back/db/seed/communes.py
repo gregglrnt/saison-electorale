@@ -10,8 +10,7 @@ async def seed_communes():
     with open(commune_data_path + "/insee_codes.csv", 'r') as file:
         csvreader = csv.reader(file, delimiter=';')
         next(csvreader)
-        for _ in range(500):
-            row=next(csvreader)
+        for row in csvreader:
             code= row[15].zfill(2) + row[12].zfill(3)
             exists = await Commune.prisma().find_unique(where={"code": code})
             if exists:

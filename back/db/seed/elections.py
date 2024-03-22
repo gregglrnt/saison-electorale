@@ -19,8 +19,7 @@ async def seed_election(path: str, format: Format, separator=","):
         with open(csv_file, "r") as file:
             csv_reader = csv.reader(file, delimiter=separator)
             next(csv_reader)
-            for _ in range(500): 
-                row = next(csv_reader)
+            for row in csv_reader:
                 code= row[format["dep_code"]].zfill(2) + row[format["com_code"]].zfill(3)
                 if isinstance(format["invalid"], list):
                     invalid = 0

@@ -42,16 +42,3 @@ async def get_all_data_from_date(date_str: str, page: int = 0):
         "total_items": count,
         "communes": res,
     }
-        
-        
-    
-    #get meteo per day for all communes
-    
-    #get ballots from communes for specific day
-        
-    
-    #return only 
-        
-
-## batch all meteo records by election
-## and return
