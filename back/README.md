@@ -6,6 +6,8 @@
 docker compose up
 ```
 
+Le back sera accessible à l'adresse suivante: http://localhost:8000
+
 --- 
 
 ## Initialisation 🚀
