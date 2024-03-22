@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  api:
+    build: .
+    depends_on: 
+      - db
+    ports: 
+      - "8000:80"
+    links:
+      - "db:database"
+  db:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: brWKd35UU39WV5
+    volumes:
+      - ./db/dump.sql:/docker-entrypoint-initdb.d/init.sql
