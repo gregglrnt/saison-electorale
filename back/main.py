@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from db.main import prisma
 from routes.commune import communes
 from routes.compare import compare
+from routes.election import election
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):  
@@ -25,3 +26,4 @@ app.add_middleware(
 
 app.include_router(communes)
 app.include_router(compare)
+app.include_router(election)
