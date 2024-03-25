@@ -5,7 +5,7 @@ from ..main import prisma
 #TODO: implement with filters
 async def get_all_communes(page:int, withStation = False):
     count = await prisma.commune.count();
-    all = await prisma.commune.find_many(take=20, skip=page*20, include={"closer_station": withStation})
+    all = await prisma.commune.find_many(take=100, skip=page*100, include={"closer_station": withStation})
     return (count, all)
 
 async def get_commune(code: str):
