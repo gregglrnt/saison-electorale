@@ -1,24 +1,39 @@
-import React, { useEffect } from 'react'
-import L from 'leaflet'
+import { useEffect, useRef } from "react";
+import { useGeoJSON } from "../lib/d3.tsx";
+import json from "../assets/csvjson.json";
 
 const MapChart = () => {
-    useEffect(() => {
-        const script = document.createElement('script');
-        script.src = '../graph-script.js';
-        script.async = true;
-
-        document.body.appendChild(script);
-
-        return () => {
-            document.body.removeChild(script);
-        }
-    },[]);
+    // const geoJSOn : {"type": string, "features": {geometry: {type: "Polygon", coordinates: number[][][]}, properties: any, type: "Feature"}[]} = {
+    //     "type": "FeatureCollection",
+    //   "features": []
+    // }
+    //     for(const el of json) {
+    //         geoJSOn.features.push({
+    //             "type": "Feature",
+    //             "geometry": {
+    //                 type: "Polygon",
+    //                 coordinates: el.geo_shape.coordinates,
+    //             },
+    //             "properties": {
+    //                 "name": el.Commune,
+    //                 "population": el.Population,
+    //             }})
+    //     }
+    //     console.log("geojson", geoJSOn);
+    // const {geoJSON} = useGeoJSON();
+    // const rep = useRef<JSX.Element[]>([])
+    // useEffect(() => {
+    //     rep.current.push(...addPath(geoJSON))
+    // }, [geoJSON])
+    const {paths, destroy} = useGeoJSON(json);
+    // console.log(geoJSON);
     
     return (
         <>
         <div className="container">
-            <canvas id="myChart"></canvas>
+            <svg width="500" height="500"> {paths} </svg>
         </div>
+        <button onClick={() => destroy()}>Destroy</button>
 
         </>
     )
