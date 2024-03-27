@@ -1,6 +1,6 @@
 datasource db {
   provider = "postgres"
-  url      = "postgresql://postgres:brWKd35UU39WV5@localhost:5432?connect_timeout=300"
+  url      = "postgresql://postgres:brWKd35UU39WV5@database:5432?connect_timeout=300"
 }
 
 generator client {
