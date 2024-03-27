@@ -1,7 +1,7 @@
 
 from datetime import datetime
 
-from lib.meteo import get_weather_status
+from utils.meteo import get_weather_status
 from ..main import prisma
 
 async def get_meteo_by_station_by_day(stationId: int, date: datetime):
