@@ -1,7 +1,7 @@
 import asyncio
 from main import prisma
 from seed.meteo import seed_meteo
-from seed.communes import seed_communes
+from seed.communes import add_geojson, seed_communes
 from seed.elections import seed_election_all
 from meteo.update import seed_stations_to_communes
 

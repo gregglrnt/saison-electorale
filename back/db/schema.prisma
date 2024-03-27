@@ -1,6 +1,6 @@
 datasource db {
   provider = "postgres"
-  url      = "postgresql://postgres:brWKd35UU39WV5@database:5432?connect_timeout=300"
+  url      = "postgresql://postgres:brWKd35UU39WV5@localhost:5432?connect_timeout=300"
 }
 
 generator client {
@@ -11,7 +11,7 @@ generator client {
 model Station {
   id          String    @id
   coordinates String    @unique
-  zip         String    
+  zip         String
   commune     String
   Meteo       Meteo[]
   Commune     Commune[]
@@ -39,6 +39,7 @@ model Commune {
   departement    String?
   label          String
   centroid       String?
+  geojson        String?
   Results        Results[]
   closer_station Station?  @relation(fields: [stationId], references: [id])
   stationId      String?
