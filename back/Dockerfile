@@ -1,4 +1,4 @@
-FROM python:3.9.19-bookworm
+FROM --platform=linux/amd64 python:3.9-slim
 WORKDIR /code
 COPY ./requirements.txt requirements.txt
 RUN pip install --user --no-cache-dir --upgrade -r requirements.txt
