@@ -1,4 +1,5 @@
 
+import asyncio
 import csv
 
 from prisma.models import Commune
@@ -7,7 +8,7 @@ commune_data_path = "../../data/communes/"
 
 async def seed_communes():
     print("seeding communes....")
-    with open(commune_data_path + "/insee_codes.csv", 'r') as file:
+    with open(commune_data_path + "insee_codes.csv", 'r') as file:
         csvreader = csv.reader(file, delimiter=';')
         next(csvreader)
         for row in csvreader:
@@ -22,7 +23,18 @@ async def seed_communes():
                 "departement": row[3].replace("[", "").replace("]", "").replace('"', ""),
                 "centroid": row[9],
                 "insee_code": row[0],
+                "geojson": row[10],
                 "zip": row[1]
             })
             except:
                 print(f"Not creating {code}")
+
+
+async def add_geojson():
+    print("add geojson data....")
+    with open(commune_data_path + "insee_codes.csv", "r") as file:
+        csvreader = csv.reader(file, delimiter=";")
+        next(csvreader);
+        for row in csvreader:
+            code= row[15].zfill(2) + row[12].zfill(3)
+            await Commune.prisma().update(where={"code": code}, data={"geojson": row[10]})

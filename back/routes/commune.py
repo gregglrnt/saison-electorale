@@ -60,5 +60,4 @@ async def get_results_by_date(code: str, date: str):
         
 @communes.get("/search")
 async def search_commune(query: str):
-    print(query)
     return await get_commune_by_text(query)

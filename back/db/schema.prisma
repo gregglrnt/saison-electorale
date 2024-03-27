@@ -11,7 +11,7 @@ generator client {
 model Station {
   id          String    @id
   coordinates String    @unique
-  zip         String    
+  zip         String
   commune     String
   Meteo       Meteo[]
   Commune     Commune[]
@@ -39,6 +39,7 @@ model Commune {
   departement    String?
   label          String
   centroid       String?
+  geojson        String?
   Results        Results[]
   closer_station Station?  @relation(fields: [stationId], references: [id])
   stationId      String?

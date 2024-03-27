@@ -1,5 +1,7 @@
 from datetime import datetime
+import json
 from fastapi import APIRouter, HTTPException
+from fastapi.encoders import jsonable_encoder
 
 from db.communes.get import get_all_communes, get_results_election
 from db.elections.get import get_election_by_date
@@ -32,6 +34,7 @@ async def get_all_data_from_date(date_str: str, page: int = 0):
         res.append({
             "commune": commune.code,
             "label": commune.label,
+            "geojson": commune.geojson,
             "weather": weather,
             "results": results,
         })
