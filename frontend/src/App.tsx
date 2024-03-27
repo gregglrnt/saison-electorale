@@ -1,13 +1,6 @@
 import './App.css'
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler, Legend, plugins } from 'chart.js'
-import { Line } from 'react-chartjs-2'
-import { da, faker } from '@faker-js/faker'
-import TopBar from './components/TopBar'
-import SearchBar from './components/SearchBar'
-import MapChart from './components/FranceMap'
-import DiscreteSlider from './components/DiscreteSlider.js'
-import './graph-script.js'
 import React from 'react'
+import MapChart from './components/FranceMap'
 /*ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -50,10 +43,11 @@ export const data = {
 const App = () => {
   return (
     <div className="app">
-        <TopBar />
+        {/* <TopBar />
         <SearchBar />
         <MapChart />
-        <DiscreteSlider />
+        <DiscreteSlider /> */}
+        <MapChart/>
     </div>
   )
 }
