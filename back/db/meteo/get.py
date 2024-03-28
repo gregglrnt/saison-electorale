@@ -16,4 +16,4 @@ async def get_meteo_by_station_by_day(stationId: int, date: datetime):
             }}
         ]
     })
-    return list(map(lambda x: {** dict(x), 'status': get_weather_status(x)}, weather))
+    return list(map(lambda x: {**x,'status': get_weather_status(x)}, weather))
