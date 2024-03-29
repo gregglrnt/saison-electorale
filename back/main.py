@@ -1,6 +1,7 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from db.main import prisma
 from routes.commune import communes
 from routes.compare import compare
@@ -23,6 +24,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
+app.add_middleware(GZipMiddleware, minimum_size=1000)
 
 app.include_router(communes)
 app.include_router(compare)
