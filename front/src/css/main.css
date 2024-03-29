@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Jaldi:wght@400;700&display=swap');
+
+body {
+    font-family: "Jaldi", sans-serif;
+    background: #FDFDFD;
+}
+
+p {
+    margin: 0
+}
+
+input, button, select, option {
+    font-family: inherit;
+}
+
+.status {
+    display: inline-block;
+    &.loading {
+      background: #00E384;
+      color: white;
+      border-radius: 20px;
+      padding: 0 10px;
+      &::after {
+        content: "..."
+      }
+    }
+  }
+
+button, .button {
+  all: unset;
+  color: #FDFDFD;
+  background: #ff473e;
+  border-radius: calc(3*8px);
+  padding: 8px 16px;
+
+  &:hover {
+    cursor: pointer;
+    background: #cc0a00;
+  }
+}
+
+.button-blue {
+  background: #329DFF
+}

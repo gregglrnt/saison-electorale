@@ -4,4 +4,5 @@ export type Weather = {
     humidity ?: number,
     ice_height ?: number,
     rain ?: number,
+    temperature_celsius?: number,
 }

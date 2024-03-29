@@ -2,7 +2,7 @@
 from datetime import datetime
 from fastapi import APIRouter, HTTPException
 from db.elections.get import get_election, get_election_by_date
-from db.communes.get import get_all_communes, get_commune, get_commune_by_text, get_results_election
+from db.communes.get import get_all_communes, get_commune, get_commune_by_text, get_commune_results, get_results_election
 from db.meteo.get import get_meteo_by_station_by_day
 
 
@@ -57,6 +57,11 @@ async def get_results_by_date(code: str, date: str):
         return await get_results_election(code, election)
     except Exception as e:
         print(e)
+
+
+@communes.get("/{code}/results")
+async def get_results_by_commune(code: str):
+    return await get_commune_results(code);
         
 @communes.get("/search")
 async def search_commune(query: str):

@@ -1,16 +1,19 @@
 <script lang="ts">
-  import { paths } from "$lib/d3";
-  import { fetchAllPages } from "$lib/fetch";
+  import { generatePathsFromSource, paths } from "$lib/map";
+  import { fetchAllPagesAnd } from "$lib/fetch";
   import { writable } from "svelte/store";
   import type { PathType } from "../models/path";
-
-  export let yearSelected: string;
+  import { currentElection } from "$lib/election";
+  import Tooltip from "./Tooltip.svelte";
+  let status = "";
   $: {
-    fetchAllPages(yearSelected);
+    status = "loading"
+    fetchAllPagesAnd($currentElection, generatePathsFromSource).then(() => status = "")
   }
-  let hoveredElement = writable<PathType>();
+  let hoveredElement = writable<PathType | null>(null);
 </script>
 
+<span class="status" class:loading={status === "loading"}> {status} </span>
 <div class="container">
   <svg width="900" height="1000">
     {#each $paths as path}
@@ -21,20 +24,13 @@
         stroke-width="0.5"
         fill={path.fill}
         on:mouseenter={() => hoveredElement.set(path)}
+        on:mouseleave={() => hoveredElement.set(null)}
+        aria-describedby="data-card"
+        role="figure"
       ></path>
     {/each}
   </svg>
-  {#if $hoveredElement}
-    <div class="card">
-      <p>{$hoveredElement.label}</p>
-      <span class={$hoveredElement.weather.split(" ").join("-")} />
-      <p>
-        {$hoveredElement.abstention
-          ? $hoveredElement.abstention + "%"
-          : "Pas de résultats"}
-      </p>
-    </div>
-  {/if}
+  <Tooltip content={$hoveredElement}/>
 </div>
 
 <style>
@@ -42,35 +38,10 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
-  .sun-cloudy::before {
-    content: "🌤️";
-  }
-  .rain::before {
-    content: "☔";
-  }
-  .sun-::before {
-    content: "😎";
-  }
-  .cloudy::before {
-    content: "☁️";
-  }
-  .rain-cloudy::before {
-    content: "🌧️";
-  }
+ 
 
   path:hover {
     stroke: black;
     cursor: pointer;
-  }
-
-  .card {
-    border-radius: 20px;
-    left: 20px;
-    width: 30%;
-    padding: 8px;
-
-    & p {
-      margin: 0;
-    }
   }
 </style>

@@ -4,11 +4,6 @@ import type { DataFromCommunes } from "../models/data"
 import type { Feature } from "../models/geo"
 import type { PathType } from "../models/path"
 
-
-
-
-
-
 const transformToGeoJson = (json: DataFromCommunes[]) : {"type": "FeatureCollection", "features": Feature[]} => {
     const features : Feature[] = []
     for (const el of json) {
@@ -23,7 +18,8 @@ const transformToGeoJson = (json: DataFromCommunes[]) : {"type": "FeatureCollect
                 id: el.code,
                 label: el.commune,
                 abstention: el.abstention,
-                weather: el.weather_status,
+                weather_status: el.weather_status,
+                weather: el.weather,
             }
         })
     }
@@ -49,9 +45,9 @@ export type DataFromAPI = {
 export const generatePathsFromSource = (json: DataFromAPI | undefined) => {
     if(!json) return;
     const colorScale = d3.scaleDiverging(d3.interpolateSpectral).domain([100, 0])
-    const geopath = d3.geoPath().projection(d3.geoConicConformal().center([-1.454071, 48.279229]).scale(4000).translate([300, 300]));
+    const geopath = d3.geoPath().projection(d3.geoConicConformal().center([-1.454071, 47.279229]).scale(4000).translate([300, 300]));
     const geojson = transformToGeoJson(json.communes);
-    return geojson.features.map((feature) : void => {
+    geojson.features.map((feature) : void => {
         try {
             const color = feature.properties.abstention ? colorScale(feature.properties.abstention) : 'lightgray';
             paths.update((previousPaths) => {
@@ -63,7 +59,7 @@ export const generatePathsFromSource = (json: DataFromAPI | undefined) => {
                 return previousPaths
             })
         } catch( error) {
-            console.log(`error in ${feature}`, error)
+            console.error(`error in ${feature.properties.label}`)
         }
 })
 }

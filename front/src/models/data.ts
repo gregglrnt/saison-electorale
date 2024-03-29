@@ -7,5 +7,5 @@ export type DataFromCommunes = {
     centroid: string,
     abstention: number,
     weather_status: string,
-    weather: Weather[],
+    weather: Weather,
 }

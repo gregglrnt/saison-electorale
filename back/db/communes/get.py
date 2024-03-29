@@ -37,7 +37,7 @@ async def get_commune_by_text(text: str):
             "mode": "insensitive"
         }
     }, take=20)
-    return list(map(lambda r : r.label, res))
+    return list(map(lambda r : {"label": r.label, "code": r.code}, res))
 
 async def get_commune_and_scores(page:int, ballot: Election):
     count = await prisma.commune.count()
@@ -63,3 +63,6 @@ async def get_commune_and_scores(page:int, ballot: Election):
                 },
         })
     return (count, res)
+
+async def get_commune_results(code: str):
+    return await prisma.commune.find_unique(where={"code": code}, include={"Results": {"include": {"ballot": True}}});
