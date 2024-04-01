@@ -11,8 +11,6 @@
   let width = 700;
   let height = 500;
 
-  let status = "";
-
   const padding = { top: 20, right: 40, bottom: 40, left: 40 };
   const hoverPoint = writable<Point | null>(null);
   const rainTicks = [0, 1, 2, 3, 4, 5, 6];

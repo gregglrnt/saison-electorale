@@ -1,21 +1,14 @@
 <script lang="ts">
-  import { currentElection, elections, getElections } from "$lib/election";
   import Search from "./Search.svelte";
 </script>
 
 <header>
   <a class="logo-container" href="/">
     <img src="/logo.png" alt="Logo"/>
-    <span class="site-title"> Votre comparateur météo 😎 / élections 🗳️</span>
+    <span class="site-title"> SAISON/ÉLECTORALE Votre comparateur météo 😎 / élections 🗳️</span>
   </a>
 
-  <select bind:value={$currentElection}>
-    {#each $elections as election}
-      <option value={election.value}>
-        {election.label}
-      </option>
-    {/each}
-  </select>
+
   <Search/>
   <menu>
     <a href="/map">Carte</a>

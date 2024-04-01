@@ -65,4 +65,12 @@ async def get_commune_and_scores(page:int, ballot: Election):
     return (count, res)
 
 async def get_commune_results(code: str):
-    return await prisma.commune.find_unique(where={"code": code}, include={"Results": {"include": {"ballot": True}}});
+    return await prisma.commune.find_unique(where={"code": code}, include={
+            "Results": {
+                "include": {
+                    "ballot": 
+                        True}},
+            "closer_station": {
+                "include": {
+                    "Meteo": True}}
+            });

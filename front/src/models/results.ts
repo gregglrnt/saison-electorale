@@ -1,16 +1,23 @@
 import type { Election } from "$lib/election"
-import type { StationWithMeteo } from "./weather"
+import type { Weather } from "./weather"
 
-export type CommuneWithResult = Commune & {
-    Results: Result[]
-    closer_station: StationWithMeteo
+export type ResultWeather =  {
+    election: Election,
+    results: Result,
+    weather: Weather[]
+}
+
+export type CommuneWithResult = {
+    commune: Commune,
+    electionWeather: ResultWeather[],
+    //Results: Result[]
+    //closer_station: StationWithMeteo
 }
 
 export type Result =  {
         abstention: number,
         voters: number,
         invalidVotes: number,
-        ballot: Election,
 }
 
 export type Commune = {
