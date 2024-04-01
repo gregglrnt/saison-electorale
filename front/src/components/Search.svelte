@@ -2,6 +2,7 @@
   import { writable } from "svelte/store";
   import type { SearchValues } from "../models/search";
   import { goto } from "$app/navigation";
+  import { env } from "$env/dynamic/public";
 
     let suggestions : SearchValues[] = [];
     const currentSuggestion = writable<SearchValues>();
@@ -11,7 +12,7 @@
             suggestions = []
             return;
         };
-        await fetch(`http://localhost:8000/commune/search?query=${query}`).then(data => data.json()).then(res => suggestions = res)
+        await fetch(`${env.PUBLIC_BACKEND_URL}/commune/search?query=${query}`).then(data => data.json()).then(res => suggestions = res)
 
     }
     

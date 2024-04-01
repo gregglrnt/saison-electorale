@@ -5,15 +5,14 @@
   import type { PathType } from "../models/path";
   import { currentElection } from "$lib/election";
   import Tooltip from "./Tooltip.svelte";
-  let status = "";
-  $: {
-    status = "loading"
-    fetchAllPagesAnd($currentElection, generatePathsFromSource).then(() => status = "")
-  }
+  import Status from "./Status.svelte";
+  $: status = fetchAllPagesAnd($currentElection, generatePathsFromSource)
+
   let hoveredElement = writable<PathType | null>(null);
 </script>
 
-<span class="status" class:loading={status === "loading"}> {status} </span>
+<Status waiting={status} data={paths}/>
+
 <div class="container">
   <svg width="900" height="1000">
     {#each $paths as path}

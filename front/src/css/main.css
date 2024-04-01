@@ -13,19 +13,6 @@ input, button, select, option {
     font-family: inherit;
 }
 
-.status {
-    display: inline-block;
-    &.loading {
-      background: #00E384;
-      color: white;
-      border-radius: 20px;
-      padding: 0 10px;
-      &::after {
-        content: "..."
-      }
-    }
-  }
-
 button, .button {
   all: unset;
   color: #FDFDFD;

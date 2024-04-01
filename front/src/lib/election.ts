@@ -1,3 +1,4 @@
+import { env } from "$env/dynamic/public";
 import { writable } from "svelte/store";
 
 export const currentElection = writable<string>();
@@ -41,8 +42,7 @@ const parseElections = (elections: ElectionFromAPI[]) : Election[] => {
 }
 
 export const getElections = async() => {
-    console.log("was called");
-    fetch("http://localhost:8000/election/all")
+    fetch(`${env.PUBLIC_BACKEND_URL}/election/all`)
         .then((res) => res.json())
         .then((json: ElectionFromAPI[]) => {
             const allElections = parseElections(json);

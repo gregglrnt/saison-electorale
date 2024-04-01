@@ -6,6 +6,7 @@
   import { writable } from "svelte/store";
   import { currentElection } from "$lib/election";
   import Tooltip from "./Tooltip.svelte";
+  import Status from "./Status.svelte";
   let svg: SVGSVGElement;
   let width = 700;
   let height = 500;
@@ -24,12 +25,7 @@
       ? [rainTicks[0], rainTicks[rainTicks.length - 1]]
       : [temperatureTicks[0], temperatureTicks[temperatureTicks.length - 1]];
 
-  $: {
-    status = "loading";
-    fetchAllPagesAnd($currentElection, definePointsDefault).then(
-      () => (status = "")
-    );
-  }
+  $: fetch = fetchAllPagesAnd($currentElection, definePointsDefault);
 
   $: xScale = scaleLinear()
     .domain(domain)
@@ -56,13 +52,7 @@
   }
 </script>
 
-<span class="status" class:loading={status === "loading"}>{status}</span>
-
-<span class="label">
-  {#if status !== "loading" && $points.length === 0}
-    ⚠️ Pas de data
-  {/if}
-</span>
+<Status waiting={fetch} data={points}/>
 
 <div class={`graph ${$comparaison}`}>
   <svg bind:this={svg} {width} {height}>
