@@ -42,7 +42,7 @@ export const parseElection = (election: ElectionFromAPI) : Election => {
 export const parseElections = (elections: ElectionFromAPI[]) : Election[] => {
     return elections.map((election) => {
         return parseElection(election);
-})
+}).sort((e1, e2) =>  e2.date.getTime() - e1.date.getTime())
 }
 
 export const getElections = async() => {

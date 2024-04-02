@@ -77,19 +77,21 @@
   }
 
   input {
-    width: 300px;
+    min-width: 350px;
     background: transparent;
     border: 1px solid darkgray;
     border-radius: 32px;
     padding: 8px 16px;
+    color: inherit;
   }
 
   #suggestions {
+    font-family: 'Spectral', sans-serif;
     display: flex;
     flex-direction: column;
     position: absolute;
     top: 110%;
-    width: 300px;
+    width: 350px;
     background: #f9f9f9;
     z-index: 3;
     border-radius: 8px;
@@ -103,11 +105,11 @@
     display: block;
     padding: 0.5px 8px;
     &:hover {
-      background: lightblue;
+      background: rgba(50, 157, 255, 0.3);
     }
   }
 
   .suggestion-label.selected {
-    border: 1px solid purple;
+    background: rgba(50, 157, 255, 0.2);
   }
 </style>

@@ -24,7 +24,7 @@
 <svelte:window on:mousemove={setYPosition}></svelte:window>
 
 <div class="card" class:empty={content === null} id="data-card" bind:this={tooltip}>
-  <p class="title">{content?.label}</p>
+  <h3>{content?.label}</h3>
   <span class={content?.weather_status} />
   <p>
     {content?.abstention ? content?.abstention + "% d'abstention" : "Pas de résultats"}
@@ -41,11 +41,8 @@
     padding: 16px;
     position: fixed;
     left: 80%;
-    background: #F9F9F9;
-  }
-
-  .title {
-    font-weight: bold;
+    background: var(--french-white);
+    box-shadow: 0 0 16px 0 rgba(var(--french-blue-rgb), 0.25); 
   }
 
 .empty {

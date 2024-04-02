@@ -17,8 +17,8 @@
 
 <style>
     .card {
-        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
-        padding: 18px;
-        background: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 </style>

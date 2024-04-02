@@ -17,8 +17,8 @@
   .status {
     display: inline-flex;
     align-items: center;
-    background: #00e384;
-    color: white;
+    background: var(--french-gray);
+    color: var(--french-white);
     border-radius: 20px;
     padding: 0 10px;
   }

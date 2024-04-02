@@ -16,7 +16,7 @@
   const rainTicks = [0, 1, 2, 3, 4, 5, 6];
   const temperatureTicks = [-10, 0, 10, 20, 30, 40];
 
-  const comparaison = writable<"rain" | "temperature">("rain");
+  const comparaison = writable<"rain" | "temperature">("temperature");
 
   $: domain =
     $comparaison === "rain"
@@ -49,7 +49,7 @@
       : comparaison.set("rain");
   }
 </script>
-
+<svelte:window on:resize={() => resize()}/>
 <Status waiting={fetch} data={points}/>
 
 <div class={`graph ${$comparaison}`}>
@@ -101,11 +101,12 @@
   .graph {
     display: flex;
     flex-direction: column;
+    gap: 16px;
   }
 
   svg {
-    width: 50%;
-    height: 50%;
+    width: 60%;
+    height: 30%;
   }
 
   circle {

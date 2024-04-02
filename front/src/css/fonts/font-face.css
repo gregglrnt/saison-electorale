@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'Geist';
+    src: url('Geist-Regular.woff2') format('woff2'),
+        url('Geist-Regular.woff') format('woff'),
+        url('Geist-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geist';
+    src: url('Geist-Regular_1.woff2') format('woff2'),
+        url('Geist-Regular_1.woff') format('woff'),
+        url('Geist-Regular_1.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Spectral";
+    src: url('Spectral-Regular.ttf') format('truetype');
+}

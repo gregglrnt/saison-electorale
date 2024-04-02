@@ -28,16 +28,16 @@
 {/if}
 <span></span>
 {#if biggest && lowest}
-  <p><b>Moyenne abstention : </b> {average.toFixed(1)} %</p>
+  <p><mark>Moyenne abstention : </mark> {average.toFixed(1)} %</p>
   <p>
-    <b> Plus basse abstention : </b>
-    {biggest.election.label} - 🗳️{biggest.results.abstention}% - 🌡️{medianTemperature(
+    <mark> Plus basse abstention : </mark>
+    {biggest.election.label} - 🗳️<b>{biggest.results.abstention}% d'abstention</b> - 🌡️{medianTemperature(
       biggest.weather
     )}°C en moyenne - {getGlobalClimate(biggest.weather)}
   </p>
   <p>
-    <b> Plus forte abstention : </b>
-    {lowest.election.label} - 🗳️{lowest.results.abstention}% - 🌡️{medianTemperature(
+    <mark> Plus forte abstention : </mark>
+    {lowest.election.label} - <b>🗳️{lowest.results.abstention}% d'abstention </b> - 🌡️{medianTemperature(
       lowest.weather
     )}°C en moyenne - {getGlobalClimate(lowest.weather)}
   </p>
@@ -53,7 +53,8 @@
 
   h1 {
     margin: 0;
-    color: #ff473e;
+    margin-bottom: 16px;
+    color: var(--french-red);
   }
 
   h1 u {

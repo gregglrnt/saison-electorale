@@ -20,7 +20,8 @@
 
   export let props: CommuneWithResult;
   const hoveredElection = writable<ResultWeather | null>();
-  const data = props.electionWeather.sort(
+  
+  $: data = props.electionWeather.sort(
     (x, y) => +y.election.date - +x.election.date
   );
 
@@ -30,17 +31,17 @@
 
   const padding = { top: 20, right: 40, bottom: 40, left: 40 };
 
-  const dates = data.map((election) =>
+  $: dates = data.map((election) =>
     election.election.date.toLocaleDateString()
-  );
+  ).reverse();
 
   const yTicks = [-10, 0, 10, 20, 30, 40];
 
-  const xScale = scaleBand()
-    .domain(dates.reverse())
+  $: xScale = scaleBand()
+    .domain(dates)
     .range([padding.left, width - padding.right]);
 
-  const tempScale = scaleLinear()
+  $: tempScale = scaleLinear()
     .domain([-10, 40])
     .range([height - padding.bottom, padding.top]);
 
@@ -48,7 +49,7 @@
     .domain([0, 6])
     .range([height - padding.bottom, padding.top]);
 
-  const abstentionScale = scaleLinear()
+  $: abstentionScale = scaleLinear()
     .domain([0, 100])
     .range([height - padding.bottom, padding.top]);
 
@@ -121,9 +122,11 @@
 <style>
   .graph {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 16px;
-    align-items: center;
+    grid-template-columns: 1fr 200px;
+
+    @media screen and (width < 600px) {
+      grid-template-columns: 1fr;
+    }
   }
   svg {
     width: 100%;
