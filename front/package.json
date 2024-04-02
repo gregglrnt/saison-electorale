@@ -29,6 +29,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-node": "^5.0.1",
 		"chart.js": "^4.4.2",
 		"d3": "^7.9.0",
 		"d3-geo": "^3.1.1"

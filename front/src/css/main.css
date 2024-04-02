@@ -1,44 +1,110 @@
-@import url('https://fonts.googleapis.com/css2?family=Jaldi:wght@400;700&display=swap');
+:root {
+  --french-red: #CE1126;
+  --french-red-darker: #aa0e20;
+  --french-red-gradient: linear-gradient(274deg, rgba(255,255,255,0.7) 0%, rgba(206,17,38,1) 0%, rgba(170,14,32,1) 100%);
+  --french-yellow: #f9dc5cff;
+  --french-white: #f3f3f3;
+  --french-white-darker: #EBEBEB;
+  --french-white-gradient:linear-gradient(274deg, rgba(255,255,255,0.7) 0%, rgba(243,243,243,1) 0%, rgba(235,235,235,1) 100%); 
+  --french-blue: #002654;
+  --french-blue-rgb: 0, 38, 84;
+  --french-blue-darker: #001229;
+  --french-gray: #465362ff;
+}
 
 body {
-    font-family: "Jaldi", sans-serif;
-    background: #FDFDFD;
+    font-family: "Geist", sans-serif;
+    background: var(--french-white);
+    font-size: 14px;
+    color: var(--french-blue);
+    margin: 0;
+    height: 100%;
+    display: flex;
+}
+
+h1, h2, h3, .high {
+  font-family: 'Spectral', serif;
 }
 
 p {
-    margin: 0
+    margin: 0;
+    line-height: 1.5rem;
 }
 
 input, button, select, option {
     font-family: inherit;
 }
 
-.status {
-    display: inline-block;
-    &.loading {
-      background: #00E384;
-      color: white;
-      border-radius: 20px;
-      padding: 0 10px;
-      &::after {
-        content: "..."
-      }
-    }
-  }
-
 button, .button {
   all: unset;
-  color: #FDFDFD;
-  background: #ff473e;
+  color: var(--french-white);
+  background: var(--french-red-gradient);
   border-radius: calc(3*8px);
   padding: 8px 16px;
+  white-space: nowrap;
 
   &:hover {
     cursor: pointer;
-    background: #cc0a00;
+    background: var(--french-red-darker);
   }
 }
 
 .button-blue {
-  background: #329DFF
+  background: var(--french-blue);
+  &:hover {
+    background: var(--french-blue-darker)
+  }
+}
+
+a:not(.button), button.link {
+  all: unset;
+  background: none;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+
+  &:hover {
+    background: none;
+    text-decoration-style: wavy;
+    cursor: pointer;
+  }
+}
+
+.center {
+  text-align: center;
+}
+
+.high {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+html {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+main {
+  flex: 2;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 0 5%;
+}
+
+mark {
+  all: unset;
+  font-weight: bold;
+  border-radius: 5px;
+  padding-right: 5px;
+  padding-left: 8px;
+  background: rgba(50, 157, 255, 0.2);
+  border: solid rgba(50, 157, 255, 0.1);
+  border-width: 0 0 7px 0;
+}
+
+.bold {
+  font-weight: bold;
 }

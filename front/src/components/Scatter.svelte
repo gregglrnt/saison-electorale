@@ -6,30 +6,24 @@
   import { writable } from "svelte/store";
   import { currentElection } from "$lib/election";
   import Tooltip from "./Tooltip.svelte";
+  import Status from "./Status.svelte";
   let svg: SVGSVGElement;
   let width = 700;
   let height = 500;
-
-  let status = "";
 
   const padding = { top: 20, right: 40, bottom: 40, left: 40 };
   const hoverPoint = writable<Point | null>(null);
   const rainTicks = [0, 1, 2, 3, 4, 5, 6];
   const temperatureTicks = [-10, 0, 10, 20, 30, 40];
 
-  const comparaison = writable<"rain" | "temperature">("rain");
+  const comparaison = writable<"rain" | "temperature">("temperature");
 
   $: domain =
     $comparaison === "rain"
       ? [rainTicks[0], rainTicks[rainTicks.length - 1]]
       : [temperatureTicks[0], temperatureTicks[temperatureTicks.length - 1]];
 
-  $: {
-    status = "loading";
-    fetchAllPagesAnd($currentElection, definePointsDefault).then(
-      () => (status = "")
-    );
-  }
+  $: fetch = fetchAllPagesAnd($currentElection, definePointsDefault);
 
   $: xScale = scaleLinear()
     .domain(domain)
@@ -55,14 +49,8 @@
       : comparaison.set("rain");
   }
 </script>
-
-<span class="status" class:loading={status === "loading"}>{status}</span>
-
-<span class="label">
-  {#if status !== "loading" && $points.length === 0}
-    ⚠️ Pas de data
-  {/if}
-</span>
+<svelte:window on:resize={() => resize()}/>
+<Status waiting={fetch} data={points}/>
 
 <div class={`graph ${$comparaison}`}>
   <svg bind:this={svg} {width} {height}>
@@ -113,11 +101,12 @@
   .graph {
     display: flex;
     flex-direction: column;
+    gap: 16px;
   }
 
   svg {
-    width: 50%;
-    height: 50%;
+    width: 60%;
+    height: 30%;
   }
 
   circle {
