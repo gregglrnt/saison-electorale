@@ -3,7 +3,9 @@
 import Search from "../components/Search.svelte";
 
 </script>
-
+<svelte:head>
+  <title>Saison électorale 🌡️</title>
+</svelte:head>
 <div class="content">
   <span class="high"> Chercher les résultats de <mark> ma commune </mark> </span>
   <Search/>
