@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  api:
+    build: ./back/
+    depends_on: 
+      - "db"
+    ports: 
+      - "8000:8000"
+    links:
+      - "db:database"
+    restart: on-failure
+  db:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: brWKd35UU39WV5
+    volumes:
+      - ./back/db/dump.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5432"]
+      interval: 10s
+      timeout: 30s 
+      retries: 5
+      start_period: 20s
+  front:
+    build: ./front
+    ports:
+      - "80:3000"
