@@ -30,3 +30,5 @@ services:
     build: ./front
     ports:
       - "80:3000"
+    links:
+      - api
