@@ -13,5 +13,5 @@ COPY --from=builder /app/node_modules node_modules/
 COPY package.json .
 EXPOSE 3000
 ENV NODE_ENV=production
-ENV PUBLIC_BACKEND_URL='http://localhost:8000'
+ENV PUBLIC_BACKEND_URL='http://saisons.eba-pvpdiafk.eu-west-3.elasticbeanstalk.com:8000'
 CMD [ "node", "build" ]
